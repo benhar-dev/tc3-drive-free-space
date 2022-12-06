@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{dc0639a3-ba0e-492c-956a-5f371ff1cc9a}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	sizeRemaining : LINT := -1;
+	start : BOOL;
+	ntStart : NT_StartProcess;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ntStart(
+	NetId := '',
+	PathStr := 'C:\Windows\System32\mshta vbscript:Execute("CreateObject(""WScript.Shell"").Run ""powershell -c $$A=Get-Volume -DriveLetter C;$$B=get-adsroute -local;$$C=New-TcSession -Route $$B -Port 851;',
+	DirName := 'C:\Windows\System32',
+	ComndLine := 'Write-TcValue -Session $$C -Path $'Main.sizeRemaining$' -value $$A.SizeRemaining -Force;Close-TcSession -InputObject $$C;"", 0: window.close")',
+	Start := start,
+	TmOut := DEFAULT_ADS_TIMEOUT
+);
+
+IF start THEN
+	sizeRemaining := -1;
+	start := FALSE;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
