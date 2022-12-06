@@ -86,7 +86,7 @@ install.bat
 The folder ``` C:\Program Files\WindowsPowerShell\Modules\TcXaeMgmt\3.2.25 ``` should look like this:
 
 ## Screenshot
-![image](./docs/Images/Screenshot2.png)
+![image](./docs/images/Screenshot2.png)
 
 You can download the offline package by yourself at: https://www.powershellgallery.com/packages/TcXaeMgmt/3.2.25
 
